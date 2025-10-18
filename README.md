@@ -1,6 +1,6 @@
 # About Me:
 
-Test Text
+This website is currently under construction. Please check back soon!
 
 <!--
 # Data Scientist
