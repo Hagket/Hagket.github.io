@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armenian Orthodox Church Theme</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Georgia', serif;
+        background: #f5f0e6;
+        color: #333;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    header {
+        position: fixed;
+        width: 100%;
+        background: rgba(255, 250, 240, 0.95);
+        backdrop-filter: blur(5px);
+        border-bottom: 2px solid #d4a373;
+        z-index: 1000;
+    }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+    }
+    nav .logo {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #8b0000;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+    }
+    nav ul li a {
+        font-weight: 500;
+        padding: 0.5rem;
+        transition: color 0.3s, border-bottom 0.3s;
+    }
+    nav ul li a:hover { color: #d4a373; border-bottom: 2px solid #d4a373; }
+
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+    .menu-toggle span {
+        background: #8b0000;
+        height: 3px;
+        width: 25px;
+        margin: 4px 0;
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+
+    section {
+        min-height: 100vh;
+        padding: 6rem 2rem 2rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    /* Hero / About Me Section */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: url('assets/Tbrevank.jpg') center/cover no-repeat;
+        background-attachment: scroll;
+        color: #fff;
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+    .hero::before {
+        content: '';
+        position: absolute;
+        top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        font-size: 1.2rem;
+        max-width: 1000px;
+        background: rgba(255,255,255,0.9);
+        color: #333;
+        padding: 2rem;
+        border-radius: 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .about-photo {
+        flex: 0 0 250px;
+    }
+    .about-photo img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+    }
+
+    .about-content {
+        flex: 1;
+        text-align: left;
+    }
+
+    .about-content h1 {
+        text-align: center;
+        color: #8b0000;
+        margin-bottom: 2rem;
+    }
+
+    .about-section {
+        margin-bottom: 2rem;
+    }
+
+    .about-section h2 {
+        color: #8b0000;
+        border-bottom: 2px solid #d4a373;
+        padding-bottom: 0.3rem;
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+    }
+
+    .about-section ul {
+        list-style-type: none;
+        padding-left: 0;
+        line-height: 1.8;
+    }
+
+    .about-section ul li::before {
+        content: "✦ ";
+        color: #d4a373;
+        font-weight: bold;
+    }
+
+    .about-section ul li {
+        margin-bottom: 0.4rem;
+    }
+
+    /* Resources Section */
+    #resources {
+        background: #fffaf3;
+        border-top: 2px solid #d4a373;
+        padding-top: 5rem;
+    }
+
+    #resources h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: #8b0000;
+        margin-bottom: 0.5rem;
+    }
+
+    #resources p.section-intro {
+        text-align: center;
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 2.5rem;
+        font-style: italic;
+    }
+
+    .resources {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .resource-card {
+        flex: 1 1 250px;
+        background: #fff8f0;
+        padding: 1.5rem;
+        border: 1px solid #d4a373;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        background: #fff1e0;
+    }
+
+    /* Parallax Break Section */
+    .parallax-break {
+        background: url('assets/Bikfaiya.jpg') center/cover no-repeat;
+        background-attachment: scroll;
+        min-height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        margin-top: 4rem;
+        padding-top: 3rem;
+    }
+    .parallax-break::before {
+        content: '';
+        position: absolute;
+        top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1;
+    }
+    .parallax-break h2 {
+        position: relative;
+        z-index: 2;
+        font-size: 2rem;
+        background: rgba(255,255,255,0.85);
+        color: #8b0000;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+    }
+
+    /* Contact section - two columns unified */
+    #contact {
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+        background: #fffaf3;
+    }
+
+    .contact-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        padding: 2rem;
+    }
+
+    .contact-box {
+        flex: 1 1 300px;
+        max-width: 450px;
+        background: #fff8f0;
+        padding: 2rem;
+        border-radius: 10px;
+        border: 1px solid #d4a373;
+    }
+
+    .contact-box h2 {
+        color: #8b0000;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .contact-box p.contact-intro {
+        text-align: center;
+        font-size: 1rem;
+        color: #555;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .social-links li {
+        margin-bottom: 0.8rem;
+        text-align: center;
+    }
+
+    .social-links li a {
+        color: #8b0000;
+        text-decoration: underline;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .social-links li a:hover {
+        color: #d4a373;
+    }
+
+    .contact-form input, .contact-form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: inherit;
+        resize: none;
+    }
+
+    .contact-form button {
+        background: #8b0000;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+        background: #d4a373;
+        color: #000;
+    }
+
+    footer {
+        text-align: center;
+        padding: 1rem;
+        background: #8b0000;
+        color: #fff;
+        margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-content { flex-direction: column; text-align: center; }
+        .about-photo { width: 70%; max-width: 300px; margin-bottom: 1.5rem; }
+        nav ul {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: rgba(255,250,240,0.97);
+            flex-direction: column;
+            width: 200px;
+            text-align: right;
+            padding: 1rem;
+            border-left: 2px solid #d4a373;
+            display: none;
+        }
+        nav ul.show { display: flex; }
+        .menu-toggle { display: flex; }
+        .contact-container { flex-direction: column; align-items: center; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Deacon Hagop Ketchedjian | Յակոբ Սարկաւագ Քէչէճեան</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="nav-links">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="about">
+    <div class="hero-content">
+        <div class="about-photo">
+            <img src="assets/Headshot.png" alt="Headshot">
+        </div>
+        <div class="about-content">
+            <h1>About Me</h1>
+
+            <div class="about-section">
+                <h2>Background</h2>
+                <ul>
+                    <li>Born and raised in Boston, Massachusetts, U.S.A.</li>
+                    <li>Serving on the Holy Altar since 2022</li>
+                    <li>Candidate for Priesthood in the Armenian Prelacy of the Eastern U.S.</li>
+                </ul>
+            </div>
+
+            <div class="about-section">
+                <h2>Formal Education</h2>
+                <ul>
+                    <li>4th Year Computer Science Student at the University of Massachusetts Boston (2022-2026)</li>
+                    <li>Waltham Sr. High School (2018-2022)</li>
+                    <li>St. Stephens Armenian Saturday School (2008-2022)</li>
+                </ul>
+            </div>
+
+            <div class="about-section">
+                <h2>Personal Mission</h2>
+                <ul>
+                    <li>To share and revitalize the sacred traditions of the Armenian Church</li>
+                    <li>To educate our laypeople about our Holy Church</li>
+                    <li>To educate myself as much as possible in our Church's traditions, liturgics, and theology</li>
+                </ul>
+            </div>
+
+            <div class="about-section">
+                <h2>What's Next?</h2>
+                <ul>
+                    <li>Once I receive my Bachelor's degree, I hope to go to the Holy See of Cilicia's Armenian Theological Seminary (Tbrevank) for a few years for formal religious education, to ready myself in hopes of becoming a Married Priest.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="resources">
+    <h2>Resources</h2>
+    <p class="section-intro">A list of articles, documents, and resources which I have prepared for the benefit of our laypeople.</p>
+
+    <div class="resources">
+        <!-- 15 Resource Cards -->
+        <a href="#" class="resource-card"><h3>Document 1</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 2</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 3</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 4</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 5</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 6</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 7</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 8</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 9</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 10</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 11</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 12</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 13</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 14</h3><p>Description here.</p></a>
+        <a href="#" class="resource-card"><h3>Document 15</h3><p>Description here.</p></a>
+    </div>
+</section>
+
+<section class="parallax-break">
+    <h2>"Holy God, Holy & Mighty, Holy & Immortal, that you were crucified for us, have mercy upon us."</h2>
+</section>
+
+<section id="contact">
+    <div class="contact-container">
+        <div class="contact-box">
+            <h2>Social Media Links</h2>
+            <ul class="social-links">
+                <li><a href="https://www.youtube.com/@hagopket" target="_blank">Youtube Channel</a></li>
+                <li><a href="https://www.instagram.com/hagopket/" target="_blank">Instagram</a></li>
+                <li><a href="https://www.facebook.com/Hagket" target="_blank">Facebook</a></li>
+		<li><a href="https://www.linkedin.com/in/hagop-ketchedjian-934814265/" target="_blank">LinkedIn</a></li>
+		<li><a href="https://github.com/Hagket" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+        <div class="contact-box">
+            <h2>Contact Me</h2>
+            <p class="contact-intro">Feel free to reach out with any questions, comments, or suggestions related to the Armenian Orthodox church or faith.</p>
+            <form class="contact-form" action="https://formspree.io/f/xjkadlvg" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="_replyto" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>&copy; 2025 Deacon Hagop's Website</footer>
+
+<script>
+    // Smooth scroll
+    document.querySelectorAll('nav ul li a').forEach(anchor => {
+        anchor.addEventListener('click', function(e){
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Section fade-in on scroll
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+        });
+    }, { threshold: 0.2 });
+    sections.forEach(section => observer.observe(section));
+
+    // Parallax scroll effect
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        const hero = document.querySelector('.hero');
+        const parallax = document.querySelector('.parallax-break');
+        hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+        parallax.style.backgroundPositionY = `${(scrollPosition - parallax.offsetTop) * 0.5}px`;
+    });
+
+    // Hamburger menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+</script>
+
+</body>
+</html>
