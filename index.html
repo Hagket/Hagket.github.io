@@ -72,8 +72,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        background: url('Assets/Tbrevank.jpg') center/cover no-repeat;
-        background-attachment: scroll;
+        background: url('assets/Tbrevank.jpg') center/cover no-repeat;
         color: #fff;
         position: relative;
         min-height: 100vh;
@@ -197,8 +196,7 @@
 
     /* Parallax Break Section */
     .parallax-break {
-        background: url('Assets/Bikfaiya.jpg') center/cover no-repeat;
-        background-attachment: scroll;
+        background: url('assets/Bikfaiya.jpg') center/cover no-repeat;
         min-height: 70vh;
         display: flex;
         justify-content: center;
@@ -226,7 +224,7 @@
         border-radius: 10px;
     }
 
-    /* Contact section - two columns unified */
+    /* Contact section - two columns */
     #contact {
         padding-top: 6rem;
         padding-bottom: 4rem;
@@ -319,7 +317,6 @@
         margin-top: 2rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
         .hero-content { flex-direction: column; text-align: center; }
         .about-photo { width: 70%; max-width: 300px; margin-bottom: 1.5rem; }
@@ -360,11 +357,10 @@
 <section class="hero" id="about">
     <div class="hero-content">
         <div class="about-photo">
-            <img src="Assets/Headshot.png" alt="Headshot">
+            <img src="assets/Headshot.png" alt="Headshot">
         </div>
         <div class="about-content">
             <h1>About Me</h1>
-
             <div class="about-section">
                 <h2>Background</h2>
                 <ul>
@@ -373,7 +369,6 @@
                     <li>Candidate for Priesthood in the Armenian Prelacy of the Eastern U.S.</li>
                 </ul>
             </div>
-
             <div class="about-section">
                 <h2>Formal Education</h2>
                 <ul>
@@ -382,7 +377,6 @@
                     <li>St. Stephens Armenian Saturday School (2008-2022)</li>
                 </ul>
             </div>
-
             <div class="about-section">
                 <h2>Personal Mission</h2>
                 <ul>
@@ -391,7 +385,6 @@
                     <li>To educate myself as much as possible in our Church's traditions, liturgics, and theology</li>
                 </ul>
             </div>
-
             <div class="about-section">
                 <h2>What's Next?</h2>
                 <ul>
@@ -405,7 +398,6 @@
 <section id="resources">
     <h2>Resources</h2>
     <p class="section-intro">A list of articles, documents, and resources which I have prepared for the benefit of our laypeople.</p>
-
     <div class="resources">
         <!-- 15 Resource Cards -->
         <a href="#" class="resource-card"><h3>Document 1</h3><p>Description here.</p></a>
@@ -433,21 +425,21 @@
 <section id="contact">
     <div class="contact-container">
         <div class="contact-box">
-            <h2>Social Media Links</h2>
+            <h2>Connect with Me</h2>
             <ul class="social-links">
                 <li><a href="https://www.youtube.com/@hagopket" target="_blank">Youtube Channel</a></li>
                 <li><a href="https://www.instagram.com/hagopket/" target="_blank">Instagram</a></li>
                 <li><a href="https://www.facebook.com/Hagket" target="_blank">Facebook</a></li>
-				<li><a href="https://www.linkedin.com/in/hagop-ketchedjian-934814265/" target="_blank">LinkedIn</a></li>
-				<li><a href="https://github.com/Hagket" target="_blank">GitHub</a></li>
+		<li><a href="https://www.linkedin.com/in/hagop-ketchedjian-934814265/" target="_blank">LinkedIn</a></li>
+		<li><a href="https://github.com/Hagket" target="_blank">GitHub</a></li>
             </ul>
         </div>
         <div class="contact-box">
             <h2>Contact Me</h2>
             <p class="contact-intro">Feel free to reach out with any questions, comments, or suggestions related to the Armenian Orthodox church or faith.</p>
-            <form class="contact-form" action="https://formspree.io/f/xjkadlvg" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="_replyto" placeholder="Your Email" required>
+            <form class="contact-form" action="https://formspree.io/f/xjkadlvg" method="POST" autocomplete="off">
+                <input type="text" name="name" placeholder="Your Name" required autocomplete="off">
+                <input type="email" name="_replyto" placeholder="Your Email" required autocomplete="off">
                 <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
@@ -458,7 +450,7 @@
 <footer>&copy; 2025 Deacon Hagop's Website</footer>
 
 <script>
-    // Smooth scroll
+    // Smooth scroll for nav links
     document.querySelectorAll('nav ul li a').forEach(anchor => {
         anchor.addEventListener('click', function(e){
             e.preventDefault();
@@ -475,13 +467,26 @@
     }, { threshold: 0.2 });
     sections.forEach(section => observer.observe(section));
 
-    // Parallax scroll effect
+    // Smooth Parallax scroll effect (desktop + mobile)
+    const hero = document.querySelector('.hero');
+    const parallax = document.querySelector('.parallax-break');
+    let latestScrollY = 0;
+    let ticking = false;
+
+    function updateParallax() {
+        hero.style.backgroundPosition = `center ${latestScrollY * 0.5}px`;
+        parallax.style.backgroundPosition = `center ${(latestScrollY - parallax.offsetTop) * 0.5}px`;
+    }
+
     window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const hero = document.querySelector('.hero');
-        const parallax = document.querySelector('.parallax-break');
-        hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
-        parallax.style.backgroundPositionY = `${(scrollPosition - parallax.offsetTop) * 0.5}px`;
+        latestScrollY = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateParallax();
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 
     // Hamburger menu toggle
@@ -494,5 +499,3 @@
 
 </body>
 </html>
-
-
