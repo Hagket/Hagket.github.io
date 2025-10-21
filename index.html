@@ -72,7 +72,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        background: url('Assets/Tbrevank.jpg') center/cover no-repeat;
+        background: url('assets/Tbrevank.jpg') center/cover no-repeat;
         color: #fff;
         position: relative;
         min-height: 100vh;
@@ -196,7 +196,7 @@
 
     /* Parallax Break Section */
     .parallax-break {
-        background: url('Assets/Bikfaiya.jpg') center/cover no-repeat;
+        background: url('assets/Bikfaiya.jpg') center/cover no-repeat;
         min-height: 70vh;
         display: flex;
         justify-content: center;
@@ -224,7 +224,7 @@
         border-radius: 10px;
     }
 
-    /* Contact section - two columns */
+    /* Contact section - two columns with equal height */
     #contact {
         padding-top: 6rem;
         padding-bottom: 4rem;
@@ -237,6 +237,7 @@
         gap: 2rem;
         flex-wrap: wrap;
         padding: 2rem;
+        align-items: stretch; /* make children same height */
     }
 
     .contact-box {
@@ -246,9 +247,32 @@
         padding: 2rem;
         border-radius: 10px;
         border: 1px solid #d4a373;
+        display: flex;
+        flex-direction: column;
     }
 
-    .contact-box h2 {
+    /* Social box adjustments */
+    .contact-box.social {
+        justify-content: center; /* vertically center links */
+        align-items: stretch;
+    }
+
+    .contact-box.social h2 {
+        margin-bottom: 1rem;
+        text-align: center; /* center horizontally */
+        align-self: center;
+	color: #8b0000;
+    }
+
+    .contact-box.social ul {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertical centering of links */
+        align-items: center; /* horizontal centering of links */
+    }
+
+    .contact-box h2:not(.social h2) {
         color: #8b0000;
         text-align: center;
         margin-bottom: 1rem;
@@ -281,6 +305,13 @@
 
     .social-links li a:hover {
         color: #d4a373;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1; /* fill the height */
     }
 
     .contact-form input, .contact-form textarea {
@@ -335,6 +366,7 @@
         nav ul.show { display: flex; }
         .menu-toggle { display: flex; }
         .contact-container { flex-direction: column; align-items: center; }
+        .contact-box.social ul { justify-content: flex-start; }
     }
 </style>
 </head>
@@ -357,7 +389,7 @@
 <section class="hero" id="about">
     <div class="hero-content">
         <div class="about-photo">
-            <img src="Assets/Headshot.png" alt="Headshot">
+            <img src="assets/Headshot.png" alt="Headshot">
         </div>
         <div class="about-content">
             <h1>About Me</h1>
@@ -399,7 +431,6 @@
     <h2>Resources</h2>
     <p class="section-intro">A list of articles, documents, and resources which I have prepared for the benefit of our laypeople.</p>
     <div class="resources">
-        <!-- 15 Resource Cards -->
         <a href="#" class="resource-card"><h3>Document 1</h3><p>Description here.</p></a>
         <a href="#" class="resource-card"><h3>Document 2</h3><p>Description here.</p></a>
         <a href="#" class="resource-card"><h3>Document 3</h3><p>Description here.</p></a>
@@ -424,22 +455,22 @@
 
 <section id="contact">
     <div class="contact-container">
-        <div class="contact-box">
-            <h2>Connect with Me</h2>
+        <div class="contact-box social">
+            <h2>Social Media Links</h2>
             <ul class="social-links">
                 <li><a href="https://www.youtube.com/@hagopket" target="_blank">Youtube Channel</a></li>
                 <li><a href="https://www.instagram.com/hagopket/" target="_blank">Instagram</a></li>
                 <li><a href="https://www.facebook.com/Hagket" target="_blank">Facebook</a></li>
-		<li><a href="https://www.linkedin.com/in/hagop-ketchedjian-934814265/" target="_blank">LinkedIn</a></li>
-		<li><a href="https://github.com/Hagket" target="_blank">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/hagop-ketchedjian-934814265/" target="_blank">LinkedIn</a></li>
+                <li><a href="https://github.com/Hagket" target="_blank">GitHub</a></li>
             </ul>
         </div>
         <div class="contact-box">
             <h2>Contact Me</h2>
             <p class="contact-intro">Feel free to reach out with any questions, comments, or suggestions related to the Armenian Orthodox church or faith.</p>
             <form class="contact-form" action="https://formspree.io/f/xjkadlvg" method="POST" autocomplete="off">
-                <input type="text" name="name" placeholder="Your Name" required autocomplete="off">
-                <input type="email" name="_replyto" placeholder="Your Email" required autocomplete="off">
+                <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="off" autocapitalize="none" spellcheck="false">
+                <input type="email" id="email" name="_replyto" placeholder="Your Email" required autocomplete="off" autocapitalize="none" spellcheck="false">
                 <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
@@ -467,17 +498,15 @@
     }, { threshold: 0.2 });
     sections.forEach(section => observer.observe(section));
 
-    // Smooth Parallax scroll effect (desktop + mobile)
+    // Smooth Parallax scroll effect
     const hero = document.querySelector('.hero');
     const parallax = document.querySelector('.parallax-break');
     let latestScrollY = 0;
     let ticking = false;
-
     function updateParallax() {
         hero.style.backgroundPosition = `center ${latestScrollY * 0.5}px`;
         parallax.style.backgroundPosition = `center ${(latestScrollY - parallax.offsetTop) * 0.5}px`;
     }
-
     window.addEventListener('scroll', function() {
         latestScrollY = window.scrollY;
         if (!ticking) {
@@ -499,4 +528,3 @@
 
 </body>
 </html>
-
