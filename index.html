@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deacon Hagop's Website</title>
+<link rel="icon" type="image/jpg" href="assets/favicon.jpg">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -72,7 +73,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        background: url('Assets/Tbrevank.jpg') center/cover no-repeat;
+        background: url('assets/Tbrevank.jpg') center/cover no-repeat;
         color: #fff;
         position: relative;
         min-height: 100vh;
@@ -196,7 +197,7 @@
 
     /* Parallax Break Section */
     .parallax-break {
-        background: url('Assets/Bikfaiya.jpg') center/cover no-repeat;
+        background: url('assets/Bikfaiya.jpg') center/cover no-repeat;
         min-height: 70vh;
         display: flex;
         justify-content: center;
@@ -224,7 +225,7 @@
         border-radius: 10px;
     }
 
-    /* Contact section - two columns with equal height */
+    /* Contact section */
     #contact {
         padding-top: 6rem;
         padding-bottom: 4rem;
@@ -237,7 +238,7 @@
         gap: 2rem;
         flex-wrap: wrap;
         padding: 2rem;
-        align-items: stretch; /* make children same height */
+        align-items: stretch;
     }
 
     .contact-box {
@@ -251,25 +252,24 @@
         flex-direction: column;
     }
 
-    /* Social box adjustments */
     .contact-box.social {
-        justify-content: center; /* vertically center links */
+        justify-content: center;
         align-items: stretch;
     }
 
     .contact-box.social h2 {
         margin-bottom: 1rem;
-        text-align: center; /* center horizontally */
+        text-align: center;
         align-self: center;
-	color: #8b0000;
+        color: #8b0000;
     }
 
     .contact-box.social ul {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center; /* vertical centering of links */
-        align-items: center; /* horizontal centering of links */
+        justify-content: center;
+        align-items: center;
     }
 
     .contact-box h2:not(.social h2) {
@@ -307,13 +307,6 @@
         color: #d4a373;
     }
 
-    .contact-form {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex: 1; /* fill the height */
-    }
-
     .contact-form input, .contact-form textarea {
         width: 100%;
         padding: 0.75rem;
@@ -348,25 +341,109 @@
         margin-top: 2rem;
     }
 
+    /* --- MOBILE REFINEMENT --- */
     @media (max-width: 768px) {
-        .hero-content { flex-direction: column; text-align: center; }
-        .about-photo { width: 70%; max-width: 300px; margin-bottom: 1.5rem; }
+
+        header {
+            height: auto;
+            padding: 0.25rem 0;
+        }
+
+        nav {
+            padding: 0.25rem 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: left;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0.1rem;
+            gap: 3px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            background: #8b0000;
+            height: 1.5px;
+            width: 18px;
+            border-radius: 1px;
+            transition: all 0.25s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(3px, 3px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(3px, -3px);
+        }
+
         nav ul {
             position: absolute;
-            top: 70px;
+            top: 50px;
             right: 0;
             background: rgba(255,250,240,0.97);
             flex-direction: column;
-            width: 200px;
+            width: 180px;
             text-align: right;
-            padding: 1rem;
-            border-left: 2px solid #d4a373;
+            padding: 0.75rem 1rem;
+            border-left: 1px solid #d4a373;
+            border-bottom: 1px solid #d4a373;
             display: none;
+            z-index: 999;
         }
+
         nav ul.show { display: flex; }
-        .menu-toggle { display: flex; }
-        .contact-container { flex-direction: column; align-items: center; }
-        .contact-box.social ul { justify-content: flex-start; }
+
+        nav ul li a {
+            display: block;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+        }
+
+        section {
+            padding-top: 4.5rem;
+        }
+
+        .hero-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.75rem;
+        }
+
+        .about-photo {
+            width: 65%;
+            max-width: 280px;
+            margin: 0 auto 1rem;
+        }
+
+        .contact-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-box {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .contact-box.social ul {
+            justify-content: flex-start;
+        }
     }
 </style>
 </head>
@@ -389,7 +466,7 @@
 <section class="hero" id="about">
     <div class="hero-content">
         <div class="about-photo">
-            <img src="Assets/Headshot.png" alt="Headshot">
+            <img src="assets/Headshot.png" alt="Headshot">
         </div>
         <div class="about-content">
             <h1>About Me</h1>
@@ -406,7 +483,7 @@
                 <ul>
                     <li>4th Year Computer Science Student at the University of Massachusetts Boston (2022-2026)</li>
                     <li>Waltham Sr. High School (2018-2022)</li>
-                    <li>St. Stephens Armenian Saturday School (2008-2022)</li>
+                    <li>St. Stephen's Armenian Saturday School (2008-2022)</li>
                 </ul>
             </div>
             <div class="about-section">
@@ -420,7 +497,7 @@
             <div class="about-section">
                 <h2>What's Next?</h2>
                 <ul>
-                    <li>Once I receive my Bachelor's degree, I hope to go to the Holy See of Cilicia's Armenian Theological Seminary (Tbrevank) for a few years for formal religious education, to ready myself in hopes of becoming a Married Priest.</li>
+                    <li>Once I receive my Bachelor's degree, I hope to go to the Holy See of Cilicia's Armenian Theological Seminary (Tbrevank) for formal theological education.</li>
                 </ul>
             </div>
         </div>
@@ -431,26 +508,27 @@
     <h2>Resources</h2>
     <p class="section-intro">A list of articles, documents, and resources which I have prepared for the benefit of our laypeople.</p>
     <div class="resources">
-        <a href="#" class="resource-card"><h3>Document 1</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 2</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 3</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 4</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 5</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 6</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 7</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 8</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 9</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 10</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 11</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 12</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 13</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 14</h3><p>Description here.</p></a>
-        <a href="#" class="resource-card"><h3>Document 15</h3><p>Description here.</p></a>
+        <a href="https://docs.google.com/document/d/1JfZ2PbKisb5Ag9qO1u_d35PCYNhJmQxtbEM3RaUS_Ck/edit?usp=sharing" class="resource-card"><h3>Symbolism/Explanation of the Armenian Divine Liturgy (Badarak)</h3><p>An in-depth explanation of the Divine Liturgy/Badarak.</p></a>
+        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-tdMqyxz39VY94AKkj3Qxtk7&si=Ljo5tRqYDE420UhA" class="resource-card"><h3>Hymns of the Armenian Church</h3><p>A YouTube playlist of Armenian Church hymns for listening/learning.</p></a>
+        <a href="https://open.spotify.com/playlist/5yF0jHoSlxyGqizSTFc3Uw?si=VnCIsRZoSPGQ--DgJimW-Q" class="resource-card"><h3>Spotify Playlist of Hymns</h3><p>A Spotify playlist of Armenian Church hymns for listening.</p></a>
+        <a href="https://docs.google.com/document/d/14vRl4GLF6uHEz-y9JUYUuOOadkbQxysT5kAVpVlhmFw/edit?usp=sharing" class="resource-card"><h3>The Fasting Schedule of the Church</h3><p>A summary of the annual fasting schedule of the Armenian Apostolic Church.</p></a>
+        <a href="https://docs.google.com/document/d/1g1rfy9idvMWWNMLY8VrnjFmbA4u6kQc96NTVobfdmfg/edit?usp=sharing" class="resource-card"><h3>Q&A of the Armenian Apostolic Church</h3><p>Answers to frequently asked questions about the Armenian Apostolic faith, with responses by knowledged Armenian clergymen.</p></a>
+        <a href="https://docs.google.com/document/d/1cqaZR3kZ28X3cWsegt6l-5zOPYz3LEjHUzEFDo19QI4/edit?usp=sharing" class="resource-card"><h3>Araroghootyan Sharjoomner (Transliteration)</h3><p>A transliteration of the book «Գործնական Ծիսագիտութիւն» by V. Rev. Fr. Krikor Chiftjian|Գրիգոր Վրդ. Չիֆթճեան.</p></a>
+        <a href="https://docs.google.com/document/d/1nd3YCIhx1TQ0EEsBQyMbJ0fi6AD82drwTBP8hpsbOOA/edit?usp=sharing" class="resource-card"><h3>How to Conduct Prayer Hours (Դպրապետութիւն)</h3><p>A step-by-step guide on how to conduct the Prayer Hours (Ժամերգութիւն) of the Armenian Church, which I have prepared at the Armenian Theological Seminary in Bikfaiya, Lebanon.</p></a>
+        <a href="https://docs.google.com/document/d/1qDWb10eIwtRe9pQJjJaWf9ShTYxm4SGHjY1Wx3otk2k/edit?usp=sharing" class="resource-card"><h3>Tutorials for Altar Servers (Handout)</h3><p>One page tutorials for candle-holders and fan-bearers to learn and understand the proper movements and actions during the Divine Liturgy.</p></a>
+        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-te6qEHToUNIHvGwThJrgSAW&si=NhR6_lv3O2cqEgVO" class="resource-card"><h3>Altar Server Video Tutorials</h3><p>Video tutorials for altar servers to learn and understand the proper movements and actions during the Divine Liturgy.</p></a>
+        <a href="https://youtu.be/FBEQoKPXPrc" class="resource-card"><h3>How to Cense in the Armenian Church (Video)</h3><p>A video tutorial for censer-bearers (or upcoming censer-bearers) to learn the movements, form, and symbolism of the censer/poorvar.</p></a>
+        <a href="https://docs.google.com/document/d/1AXp0rQAL96HE6ujfk_QZAZLMDpAtck6LIaCwP-eXRNo/edit?usp=sharing" class="resource-card"><h3>Poorvar Teaching Aid</h3><p>A document aid for Deacons on what to teach upcoming censer-bearers.</p></a>
+        <a href="https://www.omnisets.com/sets/sharelink/0e11b1c3-3a7a-45cd-9b84-b7d390068eac/tools/study/" class="resource-card"><h3>Ծիսական Գիտելիքներ (Church Objects Flashcards)</h3><p>Digital flashcards to help with learn the names of different objects/areas within the Church.</p></a>
+        <a href="https://docs.google.com/document/d/1ALeF4wr-tukGMlc4wS_lRjUdS-aeekuJE4Npi-NNGWM/edit" class="resource-card"><h3>Summaries of Heretical Teachings</h3><p>A document summarizing the heretical teachings which the Armenian Church renounces/anathematizes.</p></a>
+        <a href="https://docs.google.com/document/d/12P9xKfocrBn0fhAWrC45SwBX0KZR4CqiW0c4cB3WBcQ/edit" class="resource-card"><h3>Theology of Other Christian Denominations</h3><p>A document explaining the theology of various Christian denominations.</p></a>
+        <a href="https://drive.google.com/drive/folders/1N3miD8fEaoG6n1SkY9pbpBKQkBI2jnD1?usp=sharing" class="resource-card"><h3>Iconography</h3><p>A folder of Armenian Church iconography.</p></a>
+        <a href="https://drive.google.com/drive/folders/1YLIi3wTVxLi3YBYst0teb9_gPavHJ9Nx?usp=sharing" class="resource-card"><h3>Digitized Church Service Books</h3><p>A folder of Armenian Church service books which have been digitized.</p></a>
     </div>
 </section>
 
 <section class="parallax-break">
-    <h2>"Holy God, Holy & Mighty, Holy & Immortal, that you were crucified for us, have mercy upon us."</h2>
+    <h2>"Holy God, Holy & Mighty, Holy & Immortal, that You were crucified for us, have mercy upon us."</h2>
 </section>
 
 <section id="contact">
@@ -458,7 +536,7 @@
         <div class="contact-box social">
             <h2>Social Media Links</h2>
             <ul class="social-links">
-                <li><a href="https://www.youtube.com/@hagopket" target="_blank">Youtube Channel</a></li>
+                <li><a href="https://www.youtube.com/@hagopket" target="_blank">YouTube Channel</a></li>
                 <li><a href="https://www.instagram.com/hagopket/" target="_blank">Instagram</a></li>
                 <li><a href="https://www.facebook.com/Hagket" target="_blank">Facebook</a></li>
                 <li><a href="https://www.linkedin.com/in/hagop-ketchedjian-934814265/" target="_blank">LinkedIn</a></li>
@@ -467,10 +545,10 @@
         </div>
         <div class="contact-box">
             <h2>Contact Me</h2>
-            <p class="contact-intro">Feel free to reach out with any questions, comments, or suggestions related to the Armenian Orthodox church or faith.</p>
+            <p class="contact-intro">Feel free to reach out with any questions, comments, or suggestions related to the Armenian Orthodox faith.</p>
             <form class="contact-form" action="https://formspree.io/f/xjkadlvg" method="POST" autocomplete="off">
-                <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="off" autocapitalize="none" spellcheck="false">
-                <input type="email" id="email" name="_replyto" placeholder="Your Email" required autocomplete="off" autocapitalize="none" spellcheck="false">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="_replyto" placeholder="Your Email" required>
                 <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
@@ -498,7 +576,7 @@
     }, { threshold: 0.2 });
     sections.forEach(section => observer.observe(section));
 
-    // Smooth Parallax scroll effect
+    // Parallax effect
     const hero = document.querySelector('.hero');
     const parallax = document.querySelector('.parallax-break');
     let latestScrollY = 0;
@@ -523,9 +601,9 @@
     const navLinks = document.getElementById('nav-links');
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('show');
+        menuToggle.classList.toggle('active');
     });
 </script>
 
 </body>
 </html>
-
