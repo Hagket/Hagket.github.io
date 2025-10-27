@@ -73,7 +73,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        background: url('assets/Tbrevank.webp') center/cover no-repeat;
+        background: #8b0000 url('assets/Tbrevank.webp') center/cover no-repeat;
         color: #fff;
         position: relative;
         min-height: 100vh;
@@ -108,6 +108,7 @@
         width: 100%;
         height: auto;
         border-radius: 15px;
+        display: block;
     }
 
     .about-content {
@@ -149,11 +150,12 @@
         margin-bottom: 0.4rem;
     }
 
-    /* Resources Section - FIXED FOR MOBILE */
+    /* Resources Section - COMPLETELY REWORKED FOR MOBILE */
     #resources {
         background: #fffaf3;
         border-top: 2px solid #d4a373;
-        padding-top: 5rem;
+        padding: 5rem 1rem 2rem;
+        min-height: auto;
     }
 
     #resources h2 {
@@ -169,14 +171,18 @@
         color: #555;
         margin-bottom: 2.5rem;
         font-style: italic;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .resources {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
-        justify-content: center;
-        padding: 0 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
     }
 
     .resource-card {
@@ -189,8 +195,9 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
+        justify-content: flex-start;
+        min-height: 180px;
+        width: 100%;
     }
 
     .resource-card:hover {
@@ -203,17 +210,19 @@
         color: #8b0000;
         margin-bottom: 0.75rem;
         font-size: 1.1rem;
+        line-height: 1.3;
     }
 
     .resource-card p {
         color: #555;
         font-size: 0.9rem;
         line-height: 1.4;
+        flex-grow: 1;
     }
 
     /* Parallax Break Section */
     .parallax-break {
-        background: url('assets/Bikfaiya.webp') center/cover no-repeat;
+        background: #8b0000 url('assets/Bikfaiya.webp') center/cover no-repeat;
         min-height: 70vh;
         display: flex;
         justify-content: center;
@@ -222,7 +231,7 @@
         text-align: center;
         position: relative;
         margin-top: 4rem;
-        padding-top: 3rem;
+        padding: 2rem;
     }
     .parallax-break::before {
         content: '';
@@ -239,13 +248,14 @@
         color: #8b0000;
         padding: 1rem 2rem;
         border-radius: 10px;
+        max-width: 90%;
     }
 
     /* Contact section */
     #contact {
-        padding-top: 6rem;
-        padding-bottom: 4rem;
+        padding: 6rem 1rem 4rem;
         background: #fffaf3;
+        min-height: auto;
     }
 
     .contact-container {
@@ -255,6 +265,8 @@
         flex-wrap: wrap;
         padding: 2rem;
         align-items: stretch;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .contact-box {
@@ -357,8 +369,17 @@
         margin-top: 2rem;
     }
 
+    /* Debug element to check if CSS is loading */
+    .debug-mobile::before {
+        content: "Mobile CSS is loading!";
+        display: none;
+    }
+
     /* --- MOBILE REFINEMENT --- */
     @media (max-width: 768px) {
+        .debug-mobile::before {
+            content: "Mobile CSS is working!";
+        }
 
         header {
             height: auto;
@@ -423,7 +444,9 @@
             z-index: 999;
         }
 
-        nav ul.show { display: flex; }
+        nav ul.show { 
+            display: flex; 
+        }
 
         nav ul li a {
             display: block;
@@ -432,13 +455,16 @@
         }
 
         section {
-            padding-top: 4.5rem;
+            padding: 4.5rem 1rem 2rem;
+            min-height: auto;
         }
 
         .hero-content {
             flex-direction: column;
             text-align: center;
             gap: 0.75rem;
+            margin: 0 1rem;
+            padding: 1.5rem;
         }
 
         .about-photo {
@@ -448,6 +474,10 @@
         }
 
         /* Resources section mobile fixes */
+        #resources {
+            padding: 4.5rem 0.5rem 2rem;
+        }
+
         .resources {
             grid-template-columns: 1fr;
             gap: 1rem;
@@ -456,15 +486,21 @@
 
         .resource-card {
             padding: 1.25rem;
+            min-height: 140px;
         }
 
         .resource-card h3 {
             font-size: 1rem;
         }
 
+        .resource-card p {
+            font-size: 0.85rem;
+        }
+
         .contact-container {
             flex-direction: column;
             align-items: center;
+            padding: 1rem;
         }
 
         .contact-box {
@@ -475,16 +511,26 @@
         .contact-box.social ul {
             justify-content: flex-start;
         }
+
+        .parallax-break h2 {
+            font-size: 1.5rem;
+            padding: 1rem;
+        }
     }
 
     /* Extra small screens */
     @media (max-width: 480px) {
+        #resources {
+            padding: 4.5rem 0.25rem 2rem;
+        }
+        
         .resources {
-            padding: 0;
+            padding: 0 0.25rem;
         }
         
         .resource-card {
             padding: 1rem;
+            min-height: 130px;
         }
         
         .resource-card h3 {
@@ -492,12 +538,19 @@
         }
         
         .resource-card p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+        }
+
+        .hero-content {
+            padding: 1rem;
+            margin: 0 0.5rem;
         }
     }
 </style>
 </head>
 <body>
+<!-- Debug element -->
+<div class="debug-mobile" style="display:none;"></div>
 
 <header>
     <nav>
@@ -516,7 +569,7 @@
 <section class="hero" id="about">
     <div class="hero-content">
         <div class="about-photo">
-            <img src="assets/Headshot.webp" alt="Headshot">
+            <img src="assets/Headshot.webp" alt="Headshot" onerror="this.style.display='none'">
         </div>
         <div class="about-content">
             <h1>About Me</h1>
@@ -573,9 +626,9 @@
         <a href="https://docs.google.com/document/d/1ALeF4wr-tukGMlc4wS_lRjUdS-aeekuJE4Npi-NNGWM/edit" class="resource-card"><h3>Summaries of Heretical Teachings</h3><p>A document summarizing the heretical teachings which the Armenian Church renounces/anathematizes.</p></a>
         <a href="https://docs.google.com/document/d/12P9xKfocrBn0fhAWrC45SwBX0KZR4CqiW0c4cB3WBcQ/edit" class="resource-card"><h3>Theology of Other Christian Denominations</h3><p>A document explaining the theology of various Christian denominations.</p></a>
         <a href="https://drive.google.com/drive/folders/1N3miD8fEaoG6n1SkY9pbpBKQkBI2jnD1?usp=sharing" class="resource-card"><h3>Iconography</h3><p>A folder of Armenian Church iconography.</p></a>
-	<a href="https://drive.google.com/file/d/1ECeiMAAGmXu9zaKtiavzhYwJeCnoahF1/view?usp=drive_link" class="resource-card"><h3>Crisis in the Armenian Church - A Memorandum</h3><p>A book describing the fierce events which occurred in the United States, causing the institution of a Prelacy and a Diocese.</p></a>
+        <a href="https://drive.google.com/file/d/1ECeiMAAGmXu9zaKtiavzhYwJeCnoahF1/view?usp=drive_link" class="resource-card"><h3>Crisis in the Armenian Church - A Memorandum</h3><p>A book describing the fierce events which occurred in the United States, causing the institution of a Prelacy and a Diocese.</p></a>
         <a href="https://drive.google.com/drive/folders/1YLIi3wTVxLi3YBYst0teb9_gPavHJ9Nx?usp=sharing" class="resource-card"><h3>Digitized Church Service Books</h3><p>A folder of Armenian Church service books which have been digitized.</p></a>
-	<a href="https://drive.google.com/drive/folders/1p08LYq652UBfNBQRicIkdU9QIwAMj5Au?usp=sharing" class="resource-card"><h3>My Sermons</h3><p>A folder of sermon/homilies which I have written.</p></a>
+        <a href="https://drive.google.com/drive/folders/1p08LYq652UBfNBQRicIkdU9QIwAMj5Au?usp=sharing" class="resource-card"><h3>My Sermons</h3><p>A folder of sermon/homilies which I have written.</p></a>
     </div>
 </section>
 
@@ -611,11 +664,19 @@
 <footer>&copy; 2025 Deacon Hagop's Website</footer>
 
 <script>
+    // Debug script to check if JavaScript is running
+    console.log("JavaScript is running on the site");
+    
     // Smooth scroll for nav links
     document.querySelectorAll('nav ul li a').forEach(anchor => {
         anchor.addEventListener('click', function(e){
             e.preventDefault();
             document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            // Close mobile menu if open
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('show');
+                menuToggle.classList.remove('active');
+            }
         });
     });
 
@@ -623,37 +684,32 @@
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+            if(entry.isIntersecting){ 
+                entry.target.classList.add('visible'); 
+            }
         });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 }); // Lower threshold for mobile
+    
     sections.forEach(section => observer.observe(section));
-
-    // Parallax effect
-    const hero = document.querySelector('.hero');
-    const parallax = document.querySelector('.parallax-break');
-    let latestScrollY = 0;
-    let ticking = false;
-    function updateParallax() {
-        hero.style.backgroundPosition = `center ${latestScrollY * 0.5}px`;
-        parallax.style.backgroundPosition = `center ${(latestScrollY - parallax.offsetTop) * 0.5}px`;
-    }
-    window.addEventListener('scroll', function() {
-        latestScrollY = window.scrollY;
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                updateParallax();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
 
     // Hamburger menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-        menuToggle.classList.toggle('active');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            menuToggle.classList.toggle('active');
+        });
+    }
+
+    // Force resources section to be visible on load (for testing)
+    window.addEventListener('load', function() {
+        const resourcesSection = document.getElementById('resources');
+        if (resourcesSection) {
+            resourcesSection.classList.add('visible');
+        }
+        console.log("Page loaded completely");
     });
 </script>
 
