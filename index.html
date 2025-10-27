@@ -7,6 +7,9 @@
 <link rel="icon" type="image/jpg" href="assets/favicon.webp">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+        scroll-behavior: smooth;
+    }
     body {
         font-family: 'Georgia', serif;
         background: #f5f0e6;
@@ -23,6 +26,7 @@
         backdrop-filter: blur(5px);
         border-bottom: 2px solid #d4a373;
         z-index: 1000;
+        transition: all 0.3s ease;
     }
     nav {
         display: flex;
@@ -61,10 +65,13 @@
         min-height: 100vh;
         padding: 6rem 2rem 2rem;
         opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 1s ease-out, transform 1s ease-out;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    section.visible { opacity: 1; transform: translateY(0); }
+    section.visible { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 
     /* Hero / About Me Section */
     .hero {
@@ -74,6 +81,7 @@
         align-items: center;
         text-align: center;
         background: #8b0000 url('assets/Tbrevank.webp') center/cover no-repeat;
+        background-attachment: fixed;
         color: #fff;
         position: relative;
         min-height: 100vh;
@@ -99,6 +107,7 @@
         display: flex;
         align-items: flex-start;
         gap: 2rem;
+        transform: translateZ(0);
     }
 
     .about-photo {
@@ -150,7 +159,7 @@
         margin-bottom: 0.4rem;
     }
 
-    /* Resources Section - COMPLETELY REWORKED FOR MOBILE */
+    /* Resources Section */
     #resources {
         background: #fffaf3;
         border-top: 2px solid #d4a373;
@@ -198,10 +207,11 @@
         justify-content: flex-start;
         min-height: 180px;
         width: 100%;
+        transform: translateZ(0);
     }
 
     .resource-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-5px) translateZ(0);
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         background: #fff1e0;
     }
@@ -223,6 +233,7 @@
     /* Parallax Break Section */
     .parallax-break {
         background: #8b0000 url('assets/Bikfaiya.webp') center/cover no-repeat;
+        background-attachment: fixed;
         min-height: 70vh;
         display: flex;
         justify-content: center;
@@ -343,6 +354,12 @@
         border-radius: 5px;
         font-family: inherit;
         resize: none;
+        transition: border-color 0.3s;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+        outline: none;
+        border-color: #d4a373;
     }
 
     .contact-form button {
@@ -353,12 +370,13 @@
         border-radius: 5px;
         cursor: pointer;
         font-weight: bold;
-        transition: background 0.3s;
+        transition: all 0.3s;
     }
 
     .contact-form button:hover {
         background: #d4a373;
         color: #000;
+        transform: translateY(-2px);
     }
 
     footer {
@@ -369,18 +387,12 @@
         margin-top: 2rem;
     }
 
-    /* Debug element to check if CSS is loading */
-    .debug-mobile::before {
-        content: "Mobile CSS is loading!";
-        display: none;
-    }
-
     /* --- MOBILE REFINEMENT --- */
     @media (max-width: 768px) {
-        .debug-mobile::before {
-            content: "Mobile CSS is working!";
+        html {
+            scroll-behavior: smooth;
         }
-
+        
         header {
             height: auto;
             padding: 0.25rem 0;
@@ -516,6 +528,11 @@
             font-size: 1.5rem;
             padding: 1rem;
         }
+        
+        /* Disable parallax on mobile for performance */
+        .hero, .parallax-break {
+            background-attachment: scroll;
+        }
     }
 
     /* Extra small screens */
@@ -549,8 +566,6 @@
 </style>
 </head>
 <body>
-<!-- Debug element -->
-<div class="debug-mobile" style="display:none;"></div>
 
 <header>
     <nav>
@@ -611,24 +626,78 @@
     <h2>Resources</h2>
     <p class="section-intro">A list of articles, documents, and resources which I have prepared for the benefit of our laypeople<br>(If you would like to submit resources for me to add to this list, please contact me with the form at the bottom of this site).</p>
     <div class="resources">
-        <a href="https://docs.google.com/document/d/1JfZ2PbKisb5Ag9qO1u_d35PCYNhJmQxtbEM3RaUS_Ck/edit?usp=sharing" class="resource-card"><h3>Symbolism/Explanation of the Armenian Divine Liturgy (Badarak)</h3><p>An in-depth explanation of the Divine Liturgy/Badarak.</p></a>
-        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-tdMqyxz39VY94AKkj3Qxtk7&si=Ljo5tRqYDE420UhA" class="resource-card"><h3>Hymns of the Armenian Church</h3><p>A YouTube playlist of Armenian Church hymns for listening/learning.</p></a>
-        <a href="https://open.spotify.com/playlist/5yF0jHoSlxyGqizSTFc3Uw?si=VnCIsRZoSPGQ--DgJimW-Q" class="resource-card"><h3>Spotify Playlist of Hymns</h3><p>A Spotify playlist of Armenian Church hymns for listening.</p></a>
-        <a href="https://docs.google.com/document/d/14vRl4GLF6uHEz-y9JUYUuOOadkbQxysT5kAVpVlhmFw/edit?usp=sharing" class="resource-card"><h3>The Fasting Schedule of the Church</h3><p>A summary of the annual fasting schedule of the Armenian Apostolic Church.</p></a>
-        <a href="https://docs.google.com/document/d/1g1rfy9idvMWWNMLY8VrnjFmbA4u6kQc96NTVobfdmfg/edit?usp=sharing" class="resource-card"><h3>Q&A of the Armenian Apostolic Church</h3><p>Answers to frequently asked questions about the Armenian Apostolic faith, with responses by knowledged Armenian clergymen.</p></a>
-        <a href="https://docs.google.com/document/d/1cqaZR3kZ28X3cWsegt6l-5zOPYz3LEjHUzEFDo19QI4/edit?usp=sharing" class="resource-card"><h3>Araroghootyan Sharjoomner (Transliteration)</h3><p>A transliteration of the book «Գործնական Ծիսագիտութիւն» by V. Rev. Fr. Krikor Chiftjian|Գրիգոր Վրդ. Չիֆթճեան.</p></a>
-        <a href="https://docs.google.com/document/d/1nd3YCIhx1TQ0EEsBQyMbJ0fi6AD82drwTBP8hpsbOOA/edit?usp=sharing" class="resource-card"><h3>How to Conduct Prayer Hours (Դպրապետութիւն)</h3><p>A step-by-step guide on how to conduct the Prayer Hours (Ժամերգութիւն) of the Armenian Church, which I have prepared at the Armenian Theological Seminary in Bikfaiya, Lebanon.</p></a>
-        <a href="https://docs.google.com/document/d/1qDWb10eIwtRe9pQJjJaWf9ShTYxm4SGHjY1Wx3otk2k/edit?usp=sharing" class="resource-card"><h3>Tutorials for Altar Servers (Handout)</h3><p>One page tutorials for candle-holders and fan-bearers to learn and understand the proper movements and actions during the Divine Liturgy.</p></a>
-        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-te6qEHToUNIHvGwThJrgSAW&si=NhR6_lv3O2cqEgVO" class="resource-card"><h3>Altar Server Video Tutorials</h3><p>Video tutorials for altar servers to learn and understand the proper movements and actions during the Divine Liturgy.</p></a>
-        <a href="https://youtu.be/FBEQoKPXPrc" class="resource-card"><h3>How to Cense in the Armenian Church (Video)</h3><p>A video tutorial for censer-bearers (or upcoming censer-bearers) to learn the movements, form, and symbolism of the censer/poorvar.</p></a>
-        <a href="https://docs.google.com/document/d/1AXp0rQAL96HE6ujfk_QZAZLMDpAtck6LIaCwP-eXRNo/edit?usp=sharing" class="resource-card"><h3>Poorvar Teaching Aid</h3><p>A document aid for Deacons on what to teach upcoming censer-bearers.</p></a>
-        <a href="https://www.omnisets.com/sets/sharelink/0e11b1c3-3a7a-45cd-9b84-b7d390068eac/tools/study/" class="resource-card"><h3>Ծիսական Գիտելիքներ (Church Objects Flashcards)</h3><p>Digital flashcards to help with learn the names of different objects/areas within the Church.</p></a>
-        <a href="https://docs.google.com/document/d/1ALeF4wr-tukGMlc4wS_lRjUdS-aeekuJE4Npi-NNGWM/edit" class="resource-card"><h3>Summaries of Heretical Teachings</h3><p>A document summarizing the heretical teachings which the Armenian Church renounces/anathematizes.</p></a>
-        <a href="https://docs.google.com/document/d/12P9xKfocrBn0fhAWrC45SwBX0KZR4CqiW0c4cB3WBcQ/edit" class="resource-card"><h3>Theology of Other Christian Denominations</h3><p>A document explaining the theology of various Christian denominations.</p></a>
-        <a href="https://drive.google.com/drive/folders/1N3miD8fEaoG6n1SkY9pbpBKQkBI2jnD1?usp=sharing" class="resource-card"><h3>Iconography</h3><p>A folder of Armenian Church iconography.</p></a>
-        <a href="https://drive.google.com/file/d/1ECeiMAAGmXu9zaKtiavzhYwJeCnoahF1/view?usp=drive_link" class="resource-card"><h3>Crisis in the Armenian Church - A Memorandum</h3><p>A book describing the fierce events which occurred in the United States, causing the institution of a Prelacy and a Diocese.</p></a>
-        <a href="https://drive.google.com/drive/folders/1YLIi3wTVxLi3YBYst0teb9_gPavHJ9Nx?usp=sharing" class="resource-card"><h3>Digitized Church Service Books</h3><p>A folder of Armenian Church service books which have been digitized.</p></a>
-        <a href="https://drive.google.com/drive/folders/1p08LYq652UBfNBQRicIkdU9QIwAMj5Au?usp=sharing" class="resource-card"><h3>My Sermons</h3><p>A folder of sermon/homilies which I have written.</p></a>
+        <a href="https://docs.google.com/document/d/1JfZ2PbKisb5Ag9qO1u_d35PCYNhJmQxtbEM3RaUS_Ck/edit?usp=sharing" class="resource-card">
+		<h3>Symbolism/Explanation of the Armenian Divine Liturgy (Badarak)</h3>
+		<p>An in-depth explanation of the Divine Liturgy/Badarak.</p>
+	</a>
+        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-tdMqyxz39VY94AKkj3Qxtk7&si=Ljo5tRqYDE420UhA" class="resource-card">
+		<h3>Hymns of the Armenian Church</h3>
+		<p>A YouTube playlist of Armenian Church hymns for listening/learning.</p>
+	</a>
+        <a href="https://open.spotify.com/playlist/5yF0jHoSlxyGqizSTFc3Uw?si=VnCIsRZoSPGQ--DgJimW-Q" class="resource-card">
+		<h3>Spotify Playlist of Hymns</h3>
+		<p>A Spotify playlist of Armenian Church hymns for listening.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/14vRl4GLF6uHEz-y9JUYUuOOadkbQxysT5kAVpVlhmFw/edit?usp=sharing" class="resource-card">
+		<h3>The Fasting Schedule of the Church</h3>
+		<p>A summary of the annual fasting schedule of the Armenian Apostolic Church.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1g1rfy9idvMWWNMLY8VrnjFmbA4u6kQc96NTVobfdmfg/edit?usp=sharing" class="resource-card">
+		<h3>Q&A of the Armenian Apostolic Church</h3>
+		<p>Answers to frequently asked questions about the Armenian Apostolic faith, with responses by knowledged Armenian clergymen.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1cqaZR3kZ28X3cWsegt6l-5zOPYz3LEjHUzEFDo19QI4/edit?usp=sharing" class="resource-card">
+		<h3>Araroghootyan Sharjoomner (Transliteration)</h3>
+		<p>A transliteration of the book «Գործնական Ծիսագիտութիւն» by V. Rev. Fr. Krikor Chiftjian|Գրիգոր Վրդ. Չիֆթճեան.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1nd3YCIhx1TQ0EEsBQyMbJ0fi6AD82drwTBP8hpsbOOA/edit?usp=sharing" class="resource-card">
+		<h3>How to Conduct Prayer Hours (Դպրապետութիւն)</h3>
+		<p>A step-by-step guide on how to conduct the Prayer Hours (Ժամերգութիւն) of the Armenian Church, which I have prepared at the Armenian Theological Seminary in Bikfaiya, Lebanon.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1qDWb10eIwtRe9pQJjJaWf9ShTYxm4SGHjY1Wx3otk2k/edit?usp=sharing" class="resource-card">
+		<h3>Tutorials for Altar Servers (Handout)</h3>
+		<p>One page tutorials for candle-holders and fan-bearers to learn and understand the proper movements and actions during the Divine Liturgy.</p>
+	</a>
+        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-te6qEHToUNIHvGwThJrgSAW&si=NhR6_lv3O2cqEgVO" class="resource-card">
+		<h3>Altar Server Video Tutorials</h3>
+		<p>Video tutorials for altar servers to learn and understand the proper movements and actions during the Divine Liturgy.</p>
+	</a>
+        <a href="https://youtu.be/FBEQoKPXPrc" class="resource-card">
+		<h3>How to Cense in the Armenian Church (Video)</h3>
+		<p>A video tutorial for censer-bearers (or upcoming censer-bearers) to learn the movements, form, and symbolism of the censer/poorvar.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1AXp0rQAL96HE6ujfk_QZAZLMDpAtck6LIaCwP-eXRNo/edit?usp=sharing" class="resource-card">
+		<h3>Poorvar Teaching Aid</h3>
+		<p>A document aid for Deacons on what to teach upcoming censer-bearers.</p>
+	</a>
+        <a href="https://www.omnisets.com/sets/sharelink/0e11b1c3-3a7a-45cd-9b84-b7d390068eac/tools/study/" class="resource-card">
+		<h3>Ծիսական Գիտելիքներ (Church Objects Flashcards)</h3>
+		<p>Digital flashcards to help with learn the names of different objects/areas within the Church.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1ALeF4wr-tukGMlc4wS_lRjUdS-aeekuJE4Npi-NNGWM/edit" class="resource-card">
+		<h3>Summaries of Heretical Teachings</h3>
+		<p>A document summarizing the heretical teachings which the Armenian Church renounces/anathematizes.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/12P9xKfocrBn0fhAWrC45SwBX0KZR4CqiW0c4cB3WBcQ/edit" class="resource-card">
+		<h3>Theology of Other Christian Denominations</h3>
+		<p>A document explaining the theology of various Christian denominations.</p>
+	</a>
+        <a href="https://drive.google.com/drive/folders/1N3miD8fEaoG6n1SkY9pbpBKQkBI2jnD1?usp=sharing" class="resource-card">
+		<h3>Iconography</h3>
+		<p>A folder of Armenian Church iconography.</p>
+	</a>
+        <a href="https://drive.google.com/file/d/1ECeiMAAGmXu9zaKtiavzhYwJeCnoahF1/view?usp=drive_link" class="resource-card">
+		<h3>Crisis in the Armenian Church - A Memorandum</h3>
+		<p>A book describing the fierce events which occurred in the United States, causing the institution of a Prelacy and a Diocese.</p>
+	</a>
+        <a href="https://drive.google.com/drive/folders/1YLIi3wTVxLi3YBYst0teb9_gPavHJ9Nx?usp=sharing" class="resource-card">
+		<h3>Digitized Church Service Books</h3>
+		<p>A folder of Armenian Church service books which have been digitized.</p>
+	</a>
+        <a href="https://drive.google.com/drive/folders/1p08LYq652UBfNBQRicIkdU9QIwAMj5Au?usp=sharing" class="resource-card">
+		<h3>My Sermons</h3>
+		<p>A folder of sermon/homilies which I have written.</p>
+	</a>
     </div>
 </section>
 
@@ -664,33 +733,45 @@
 <footer>&copy; 2025 Deacon Hagop's Website</footer>
 
 <script>
-    // Debug script to check if JavaScript is running
-    console.log("JavaScript is running on the site");
-    
-    // Smooth scroll for nav links
-    document.querySelectorAll('nav ul li a').forEach(anchor => {
-        anchor.addEventListener('click', function(e){
+    // Improved smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            // Close mobile menu if open
-            if (window.innerWidth <= 768) {
-                navLinks.classList.remove('show');
-                menuToggle.classList.remove('active');
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('show');
+                    menuToggle.classList.remove('active');
+                }
+                
+                // Smooth scroll to target
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
 
-    // Section fade-in on scroll
+    // Improved section fade-in on scroll
     const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if(entry.isIntersecting){ 
-                entry.target.classList.add('visible'); 
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
         });
-    }, { threshold: 0.1 }); // Lower threshold for mobile
-    
-    sections.forEach(section => observer.observe(section));
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 
     // Hamburger menu toggle
     const menuToggle = document.getElementById('menu-toggle');
@@ -703,13 +784,34 @@
         });
     }
 
-    // Force resources section to be visible on load (for testing)
+    // Simple parallax effect using CSS only (more reliable)
+    // The parallax is handled by CSS background-attachment: fixed
+    
+    // Force resources section to be visible on load
     window.addEventListener('load', function() {
         const resourcesSection = document.getElementById('resources');
         if (resourcesSection) {
             resourcesSection.classList.add('visible');
         }
-        console.log("Page loaded completely");
+        
+        // Preload images for better performance
+        const images = ['assets/Tbrevank.webp', 'assets/Bikfaiya.webp'];
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+    });
+
+    // Add subtle header scroll effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 250, 240, 0.98)';
+            header.style.backdropFilter = 'blur(10px)';
+        } else {
+            header.style.background = 'rgba(255, 250, 240, 0.95)';
+            header.style.backdropFilter = 'blur(5px)';
+        }
     });
 </script>
 
