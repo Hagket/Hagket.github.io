@@ -195,20 +195,22 @@
     }
 
     .resource-card {
-        background: #fff8f0;
-        padding: 1.5rem;
-        border: 1px solid #d4a373;
-        border-radius: 10px;
-        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-        cursor: pointer;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        min-height: 180px;
-        width: 100%;
-        transform: translateZ(0);
+    	background: #fff8f0;
+    	padding: 1.5rem;
+    	border: 1px solid #d4a373;
+    	border-radius: 10px;
+    	transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    	cursor: pointer;
+    	text-align: center;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: space-between; /* ensures top + bottom spacing */
+    	align-items: center;
+    	min-height: 180px;
+    	width: 100%;
+    	transform: translateZ(0);
     }
+
 
     .resource-card:hover {
         transform: translateY(-5px) translateZ(0);
@@ -217,33 +219,44 @@
     }
 
     .resource-card h3 {
-        color: #8b0000;
-        margin-bottom: 0.75rem;
-        font-size: 1.1rem;
-        line-height: 1.3;
+    	color: #8b0000;
+    	margin-bottom: 0.75rem;
+    	font-size: 1.1rem;
+    	line-height: 1.3;
+    	margin-top: 0; /* ensure top placement */
     }
 
     .resource-card p {
-        color: #555;
-        font-size: 0.9rem;
-        line-height: 1.4;
-        flex-grow: 1;
+    	color: #555;
+    	font-size: 0.9rem;
+    	line-height: 1.4;
+    	margin-top: auto;  /* pushes paragraph to bottom */
     }
+
 
     /* Parallax Break Section */
     .parallax-break {
-        background: #8b0000 url('assets/Bikfaiya.webp') center/cover no-repeat;
-        background-attachment: fixed;
-        min-height: 70vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        text-align: center;
-        position: relative;
-        margin-top: 4rem;
-        padding: 2rem;
+    	background: #8b0000 url('assets/Bikfaiya.webp') center/cover no-repeat;
+    	background-attachment: scroll; /* disables laggy parallax */
+    	min-height: 70vh;
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	color: #fff;
+    	text-align: center;
+    	position: relative;
+    	margin-top: 4rem;
+    	padding: 2rem;
+    	opacity: 0; /* prepare for fade-in */
+    	transform: translateY(20px);
+    	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
+
+    .parallax-break.visible {
+    	opacity: 1;
+    	transform: translateY(0);
+    }
+
     .parallax-break::before {
         content: '';
         position: absolute;
@@ -630,31 +643,19 @@
 		<h3>Symbolism/Explanation of the Armenian Divine Liturgy (Badarak)</h3>
 		<p>An in-depth explanation of the Divine Liturgy/Badarak.</p>
 	</a>
-        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-tdMqyxz39VY94AKkj3Qxtk7&si=Ljo5tRqYDE420UhA" class="resource-card">
-		<h3>Hymns of the Armenian Church</h3>
-		<p>A YouTube playlist of Armenian Church hymns for listening/learning.</p>
-	</a>
-        <a href="https://open.spotify.com/playlist/5yF0jHoSlxyGqizSTFc3Uw?si=VnCIsRZoSPGQ--DgJimW-Q" class="resource-card">
-		<h3>Spotify Playlist of Hymns</h3>
-		<p>A Spotify playlist of Armenian Church hymns for listening.</p>
-	</a>
-        <a href="https://docs.google.com/document/d/14vRl4GLF6uHEz-y9JUYUuOOadkbQxysT5kAVpVlhmFw/edit?usp=sharing" class="resource-card">
-		<h3>The Fasting Schedule of the Church</h3>
-		<p>A summary of the annual fasting schedule of the Armenian Apostolic Church.</p>
+        <a href="https://www.omnisets.com/sets/sharelink/0e11b1c3-3a7a-45cd-9b84-b7d390068eac/tools/study/" class="resource-card">
+		<h3>Ծիսական Գիտելիքներ (Church Objects Flashcards)</h3>
+		<p>Digital flashcards to help with learn the names of different objects/areas within the Church.</p>
 	</a>
         <a href="https://docs.google.com/document/d/1g1rfy9idvMWWNMLY8VrnjFmbA4u6kQc96NTVobfdmfg/edit?usp=sharing" class="resource-card">
 		<h3>Q&A of the Armenian Apostolic Church</h3>
 		<p>Answers to frequently asked questions about the Armenian Apostolic faith, with responses by knowledged Armenian clergymen.</p>
 	</a>
-        <a href="https://docs.google.com/document/d/1cqaZR3kZ28X3cWsegt6l-5zOPYz3LEjHUzEFDo19QI4/edit?usp=sharing" class="resource-card">
-		<h3>Araroghootyan Sharjoomner (Transliteration)</h3>
-		<p>A transliteration of the book «Գործնական Ծիսագիտութիւն» by V. Rev. Fr. Krikor Chiftjian|Գրիգոր Վրդ. Չիֆթճեան.</p>
+        <a href="https://docs.google.com/document/d/14vRl4GLF6uHEz-y9JUYUuOOadkbQxysT5kAVpVlhmFw/edit?usp=sharing" class="resource-card">
+		<h3>The Fasting Schedule of the Church</h3>
+		<p>A summary of the annual fasting schedule of the Armenian Apostolic Church.</p>
 	</a>
-        <a href="https://docs.google.com/document/d/1nd3YCIhx1TQ0EEsBQyMbJ0fi6AD82drwTBP8hpsbOOA/edit?usp=sharing" class="resource-card">
-		<h3>How to Conduct Prayer Hours (Դպրապետութիւն)</h3>
-		<p>A step-by-step guide on how to conduct the Prayer Hours (Ժամերգութիւն) of the Armenian Church, which I have prepared at the Armenian Theological Seminary in Bikfaiya, Lebanon.</p>
-	</a>
-        <a href="https://docs.google.com/document/d/1qDWb10eIwtRe9pQJjJaWf9ShTYxm4SGHjY1Wx3otk2k/edit?usp=sharing" class="resource-card">
+	<a href="https://docs.google.com/document/d/1qDWb10eIwtRe9pQJjJaWf9ShTYxm4SGHjY1Wx3otk2k/edit?usp=sharing" class="resource-card">
 		<h3>Tutorials for Altar Servers (Handout)</h3>
 		<p>One page tutorials for candle-holders and fan-bearers to learn and understand the proper movements and actions during the Divine Liturgy.</p>
 	</a>
@@ -670,9 +671,29 @@
 		<h3>Poorvar Teaching Aid</h3>
 		<p>A document aid for Deacons on what to teach upcoming censer-bearers.</p>
 	</a>
-        <a href="https://www.omnisets.com/sets/sharelink/0e11b1c3-3a7a-45cd-9b84-b7d390068eac/tools/study/" class="resource-card">
-		<h3>Ծիսական Գիտելիքներ (Church Objects Flashcards)</h3>
-		<p>Digital flashcards to help with learn the names of different objects/areas within the Church.</p>
+        <a href="https://drive.google.com/drive/folders/1YLIi3wTVxLi3YBYst0teb9_gPavHJ9Nx?usp=sharing" class="resource-card">
+		<h3>Digitized Church Service Books</h3>
+		<p>A folder of Armenian Church service books which have been digitized.</p>
+	</a>
+        <a href="https://drive.google.com/drive/folders/1p08LYq652UBfNBQRicIkdU9QIwAMj5Au?usp=sharing" class="resource-card">
+		<h3>My Sermons</h3>
+		<p>A folder of sermon/homilies which I have written.</p>
+	</a>
+        <a href="https://youtube.com/playlist?list=PLwC_MJpp3-tdMqyxz39VY94AKkj3Qxtk7&si=Ljo5tRqYDE420UhA" class="resource-card">
+		<h3>Hymns of the Armenian Church</h3>
+		<p>A YouTube playlist of Armenian Church hymns for listening/learning.</p>
+	</a>
+        <a href="https://open.spotify.com/playlist/5yF0jHoSlxyGqizSTFc3Uw?si=VnCIsRZoSPGQ--DgJimW-Q" class="resource-card">
+		<h3>Spotify Playlist of Hymns</h3>
+		<p>A Spotify playlist of Armenian Church hymns for listening.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1cqaZR3kZ28X3cWsegt6l-5zOPYz3LEjHUzEFDo19QI4/edit?usp=sharing" class="resource-card">
+		<h3>Araroghootyan Sharjoomner (Transliteration)</h3>
+		<p>A transliteration of the book «Գործնական Ծիսագիտութիւն» by V. Rev. Fr. Krikor Chiftjian|Գրիգոր Վրդ. Չիֆթճեան.</p>
+	</a>
+        <a href="https://docs.google.com/document/d/1nd3YCIhx1TQ0EEsBQyMbJ0fi6AD82drwTBP8hpsbOOA/edit?usp=sharing" class="resource-card">
+		<h3>How to Conduct Prayer Hours (Դպրապետութիւն)</h3>
+		<p>A step-by-step guide on how to conduct the Prayer Hours (Ժամերգութիւն) of the Armenian Church, which I have prepared at the Armenian Theological Seminary in Bikfaiya, Lebanon.</p>
 	</a>
         <a href="https://docs.google.com/document/d/1ALeF4wr-tukGMlc4wS_lRjUdS-aeekuJE4Npi-NNGWM/edit" class="resource-card">
 		<h3>Summaries of Heretical Teachings</h3>
@@ -690,13 +711,9 @@
 		<h3>Crisis in the Armenian Church - A Memorandum</h3>
 		<p>A book describing the fierce events which occurred in the United States, causing the institution of a Prelacy and a Diocese.</p>
 	</a>
-        <a href="https://drive.google.com/drive/folders/1YLIi3wTVxLi3YBYst0teb9_gPavHJ9Nx?usp=sharing" class="resource-card">
-		<h3>Digitized Church Service Books</h3>
-		<p>A folder of Armenian Church service books which have been digitized.</p>
-	</a>
-        <a href="https://drive.google.com/drive/folders/1p08LYq652UBfNBQRicIkdU9QIwAMj5Au?usp=sharing" class="resource-card">
-		<h3>My Sermons</h3>
-		<p>A folder of sermon/homilies which I have written.</p>
+        <a href="https://drive.google.com/drive/folders/1HOYEABtAQ7a1ppfZtF4h67JPPaheCH9A?usp=sharing" class="resource-card">
+		<h3>SSAES Religion Class Lessons</h3>
+		<p>A folder of presentation slides I have used to teach Religion classes at St. Stephen's Armenian Elementary School.</p>
 	</a>
     </div>
 </section>
@@ -789,18 +806,24 @@
     
     // Force resources section to be visible on load
     window.addEventListener('load', function() {
-        const resourcesSection = document.getElementById('resources');
-        if (resourcesSection) {
-            resourcesSection.classList.add('visible');
-        }
-        
-        // Preload images for better performance
-        const images = ['assets/Tbrevank.webp', 'assets/Bikfaiya.webp'];
-        images.forEach(src => {
-            const img = new Image();
-            img.src = src;
-        });
+    	const resourcesSection = document.getElementById('resources');
+    	if (resourcesSection) {
+        	resourcesSection.classList.add('visible');
+    	}
+
+    	const parallaxBreak = document.querySelector('.parallax-break');
+    	if (parallaxBreak) {
+        	parallaxBreak.classList.add('visible'); // ensure it loads immediately
+    	}
+
+    	// Preload images for better performance
+    	const images = ['assets/Tbrevank.webp', 'assets/Bikfaiya.webp'];
+    	images.forEach(src => {
+        	const img = new Image();
+        	img.src = src;
+    	});
     });
+
 
     // Add subtle header scroll effect
     window.addEventListener('scroll', function() {
