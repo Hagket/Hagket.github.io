@@ -544,8 +544,21 @@
         
         /* Disable parallax on mobile for performance */
         .hero, .parallax-break {
-            background-attachment: scroll;
-        }
+    	    background-attachment: scroll;
+    	    background-position: center center;
+    	    background-size: cover;
+	}
+
+	@supports (-webkit-overflow-scrolling: touch) {
+    	    .hero::before,
+    	    .parallax-break::before {
+        	content: "";
+        	position: absolute;
+        	inset: 0;
+        	background-attachment: scroll;
+    	    }
+	}
+
     }
 
     /* Extra small screens */
@@ -801,9 +814,6 @@
         });
     }
 
-    // Simple parallax effect using CSS only (more reliable)
-    // The parallax is handled by CSS background-attachment: fixed
-    
     // Force resources section to be visible on load
     window.addEventListener('load', function() {
     	const resourcesSection = document.getElementById('resources');
@@ -824,8 +834,6 @@
     	});
     });
 
-
-    // Add subtle header scroll effect
     window.addEventListener('scroll', function() {
         const header = document.querySelector('header');
         if (window.scrollY > 100) {
