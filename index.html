@@ -204,7 +204,7 @@
     	text-align: center;
     	display: flex;
     	flex-direction: column;
-    	justify-content: space-between; /* ensures top + bottom spacing */
+    	justify-content: space-between;
     	align-items: center;
     	min-height: 180px;
     	width: 100%;
@@ -223,21 +223,21 @@
     	margin-bottom: 0.75rem;
     	font-size: 1.1rem;
     	line-height: 1.3;
-    	margin-top: 0; /* ensure top placement */
+    	margin-top: 0;
     }
 
     .resource-card p {
     	color: #555;
     	font-size: 0.9rem;
     	line-height: 1.4;
-    	margin-top: auto;  /* pushes paragraph to bottom */
+    	margin-top: auto;
     }
 
 
     /* Parallax Break Section */
     .parallax-break {
     	background: #8b0000 url('assets/Bikfaiya.webp') center/cover no-repeat;
-    	background-attachment: scroll; /* disables laggy parallax */
+    	background-attachment: scroll;
     	min-height: 70vh;
     	display: flex;
     	justify-content: center;
@@ -247,7 +247,7 @@
     	position: relative;
     	margin-top: 4rem;
     	padding: 2rem;
-    	opacity: 0; /* prepare for fade-in */
+    	opacity: 0;
     	transform: translateY(20px);
     	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
@@ -490,13 +490,14 @@
             gap: 0.75rem;
             margin: 0 1rem;
             padding: 1.5rem;
-        }
+            margin-top: 4rem; /* pushes entire hero content down a bit on mobile */
+    	}
 
-        .about-photo {
+    	.about-photo {
             width: 65%;
             max-width: 280px;
-            margin: 0 auto 1rem;
-        }
+            margin: 1rem auto 1.5rem; /* adds breathing room below header */
+    	}
 
         /* Resources section mobile fixes */
         #resources {
